@@ -34,17 +34,26 @@ Ein georeferenziertes Raster enthält neben den Bilddaten auch Informationen zu:
 * Anzahl der Zeilen und Spalten
 * Koordinatenreferenzsystem (CRS)
 
+![Rasterkonzept](fig/dc-spatial-raster/raster_concept.png)
+*Abbildung: Konzept einer Rasterdatenstruktur (Quelle: NEON)*
+
 Beispiele für kontinuierliche Rasterdaten:
 
 1. Niederschlagskarten
 2. Baumhöhen aus LiDAR-Daten
 3. Höhenmodelle
 
+![Höhenkarte - NEON Harvard Forest](fig/dc-spatial-raster/DSM_HARV_example.png)
+*Abbildung: Kontinuierliche Höhendaten aus dem NEON AOP LiDAR Sensor*
+
 Beispiele für kategoriale Rasterdaten:
 
 1. Landnutzungskarten
 2. Baumhöhen klassifiziert in niedrig, mittel, hoch
 3. Höhenklassenkarten
+
+![USA Landnutzungsklassifikation](fig/USA_landcover_classification.png)
+*Abbildung: Landnutzungskarte der USA mit kategorialen Rasterdaten (Quelle: Homer et al., 2015)*
 
 ## Vorteile und Nachteile von Rasterdaten
 
@@ -66,9 +75,15 @@ Beispiele für kategoriale Rasterdaten:
 
 Die Ausdehnung gibt das geografische Gebiet an, das durch das Raster abgedeckt wird (Nord-, Süd-, Ost- und Westgrenze).
 
+![Ausdehnung](fig/dc-spatial-raster/spatial_extent.png)
+*Abbildung: Darstellung der räumlichen Ausdehnung eines Rasters (Quelle: NEON)*
+
 ### Auflösung (Resolution)
 
 Die Auflösung beschreibt die Fläche am Boden, die ein einzelner Pixel abdeckt. Höhere Auflösung = kleinere Zellen = mehr Details.
+
+![Auflösung](fig/dc-spatial-raster/raster_resolution.png)
+*Abbildung: Auswirkungen unterschiedlicher Auflösung auf Rasterdarstellung (Quelle: NEON)*
 
 ## Rasterdatenformate in diesem Workshop
 
@@ -84,6 +99,9 @@ Mehr dazu in späteren Lektionen.
 ## Mehrband-Rasterdaten
 
 Ein Raster kann mehrere **Bänder** enthalten. Ein typisches Beispiel ist ein Farbbild mit drei Bändern (Rot, Grün, Blau).
+
+![RGB Rasterbild](fig/dc-spatial-raster/RGBSTack_1.jpg)
+*Abbildung: Drei-Band-RGB-Komposit eines Farbbildes (Quelle: NEON)*
 
 Alle Bänder eines Mehrband-Rasters haben dieselbe:
 
