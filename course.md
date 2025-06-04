@@ -120,3 +120,81 @@ Weitere Typen von Mehrbanddaten:
 * Rasterdaten besitzen immer eine Ausdehnung und eine Auflösung.
 * Die Ausdehnung gibt das geografische Gebiet an, das vom Raster abgedeckt wird.
 * Die Auflösung beschreibt, wie groß jeder Pixel auf dem Boden ist.
+
+# Einführung in Vektordaten
+
+## Fragen
+
+* Was sind die wichtigsten Eigenschaften von Vektordaten?
+* Was ist der Unterschied zwischen Vektor- und Rasterdaten?
+
+## Lernziele
+
+* Vor- und Nachteile der Speicherung von Daten im Vektorformat beschreiben.
+* Die drei Vektortypen benennen und passende Datenarten zuordnen können.
+
+## Was sind Vektordaten?
+
+Vektordaten stellen konkrete Objekte auf der Erdoberfläche dar und verknüpfen diese mit Attributen. Die Geometrie wird durch sogenannte Scheitelpunkte (x-, y-Koordinaten) definiert. Die Anordnung dieser Punkte bestimmt den Geometrietyp:
+
+* **Punkte:** Ein einzelnes x,y-Koordinatenpaar (z. B. Messstationen, Bäume, Probeflächen).
+* **Linien:** Verbundene Punkte (z. B. Straßen, Flüsse), wobei jeder Knick einen Scheitelpunkt darstellt.
+* **Polygone:** Geschlossene Linien mit mindestens drei Punkten (z. B. Seen, Flächen, Ländergrenzen).
+
+![Vektortypen](fig/dc-spatial-vector/pnt_line_poly.png)
+*Abbildung: Punkte, Linien und Polygone (Quelle: NEON)*
+
+## Datentipp
+
+Grenzverläufe (z. B. von Ländern oder Bundesländern) können auch als Linien gespeichert sein. Diese besitzen dann jedoch keine Fläche – im Gegensatz zu Polygonen.
+
+## Vorteile und Nachteile von Vektordaten
+
+**Vorteile:**
+
+* Geometrien transportieren zusätzliche Bedeutung (z. B. durch Wahl von Punkt vs. Polygon)
+* Mehrere Attribute pro Objekt möglich (z. B. Stadtname, Bevölkerung)
+* Speicherplatz oft effizienter als bei Rasterdaten
+
+**Nachteile:**
+
+* Möglicher Detailverlust gegenüber Rasterdaten
+* Datenlücken je nach Erhebungsmethodik
+* Komplexere Berechnungen, da Geometrie und Attribute berücksichtigt werden müssen
+
+Vektordaten sind nicht nur in der Geoinformatik verbreitet: Auch CAD-Programme und Computergrafik arbeiten vektorbasiert – allerdings ohne Raumbezug.
+
+## Datenformat in diesem Workshop
+
+Wir verwenden das **Shapefile-Format** (`.shp`). Es speichert:
+
+* **Ausdehnung** – das abgedeckte geografische Gebiet
+* **Geometrietyp** – Punkte, Linien oder Polygone (nicht gemischt)
+* **Koordinatenreferenzsystem (CRS)**
+* **Attribute** – z. B. Namen, Höhenangaben, Kategorien
+
+Ein Shapefile kann immer nur einen Geometrietyp enthalten.
+
+## Herausforderung: Vektortyp erkennen
+
+![Objekte und Ausdehnung](fig/dc-spatial-vector/spatial_extent.png)
+*Abbildung: Punkt-, Linien- und Polygonobjekte mit Ausdehnungsrahmen*
+
+Welche Objekte besitzen dieselbe Ausdehnung? Welche nicht?
+
+### Lösung
+
+Linien und Polygone haben dieselbe Ausdehnung. Die Punktobjekte hingegen erstrecken sich nicht so weit in vertikaler Richtung – ihr Umfang ist kleiner.
+
+## Weiterführende Ressourcen
+
+Mehr zu Shapefiles auf [Wikipedia](https://de.wikipedia.org/wiki/Shapefile).
+
+## Warum nicht beides?
+
+Die meisten Dateiformate sind entweder für Raster- oder für Vektordaten gedacht – nicht für beides gleichzeitig. Innerhalb von Vektordaten dürfen oft nur Objekte eines Typs gespeichert werden. Bei Rasterdaten ist eine Kombination unterschiedlicher Datentypen (z. B. Integer + Float) meist nicht erlaubt. Das erleichtert Standardisierung und Verarbeitung.
+
+## Schlüsselpunkte
+
+* Vektordaten repräsentieren Objekte mit eindeutiger Geometrie und Attributen.
+* Es gibt drei Geometrietypen: Punkt, Linie und Polygon.
