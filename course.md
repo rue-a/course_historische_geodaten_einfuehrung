@@ -302,3 +302,8 @@ data-marker="
 * Für Geodaten-AnfängerInnen empfiehlt sich die Arbeit mit Tabellen oder **GeoJSON**.
 * GIS-Software arbeitet typischerweise mit flachen Attributen (keine Verschachtelung)
 
+# Historische Orte geocodieren
+
+- Umfrage: https://forms.cloud.microsoft/pages/responsepage.aspx?id=apeF6xEBKkC_w59XifO4X0LFZlpATcxOiuPLhi2VPyxUOFJDNThKNVo0S0k3R0k3TVVXSkhDMjRWMyQlQCN0PWcu&route=shorturl
+
+- https://www.digitale-sammlungen.de/de/view/bsb10469652?page=1

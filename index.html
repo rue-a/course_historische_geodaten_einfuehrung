@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historische Ortsdaten Editor</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- CodeMirror Styles und Script -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 300px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+
+        .container {
+            padding: 1rem;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Historische Ortsdaten Editor</h1>
+        <p>Gib hier deinen GeoJSON ein. Es wird automatisch validiert und auf der Karte dargestellt.</p>
+        <textarea id="geojson-input">{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "ort-001",
+      "properties": {
+        "preferredName": { "label": "Leipzig" },
+        "currentAffiliation": { "country": "Germany" },
+        "placeType": [ { "label": "Stadt" } ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.373075, 51.339695]
+      }
+    }
+  ]
+}</textarea>
+        <button onclick="updateMap()">Karte aktualisieren</button>
+        <div id="validation" class="error"></div>
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ajv@6.12.6/dist/ajv.min.js"></script>
+
+    <script>
+        const map = L.map('map').setView([51.339695, 12.373075], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap-Mitwirkende'
+        }).addTo(map);
+
+        let geojsonLayer;
+
+        const schema = {
+            type: "object",
+            required: ["type", "features"],
+            properties: {
+                type: { const: "FeatureCollection" },
+                features: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        required: ["type", "id", "properties", "geometry"],
+                        properties: {
+                            type: { const: "Feature" },
+                            id: { type: "string" },
+                            properties: { type: "object" },
+                            geometry: {
+                                type: "object",
+                                required: ["type", "coordinates"],
+                                properties: {
+                                    type: { enum: ["Point", "Polygon"] },
+                                    coordinates: { type: "array" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const ajv = new Ajv(); // Das bleibt am Anfang
+
+        function updateMap() {
+            const input = document.getElementById('geojson-input').value;
+            const validationDiv = document.getElementById('validation');
+
+            const validate = ajv.compile(schema); // Diese Zeile kommt jetzt HIER hinein
+
+            try {
+                const data = JSON.parse(input);
+                const valid = validate(data);
+
+                if (!valid) {
+                    validationDiv.textContent = 'Fehler im GeoJSON: ' + ajv.errorsText(validate.errors);
+                    return;
+                } else {
+                    validationDiv.textContent = '';
+                }
+
+                if (geojsonLayer) {
+                    geojsonLayer.remove();
+                }
+
+                geojsonLayer = L.geoJSON(data).addTo(map);
+                const bounds = geojsonLayer.getBounds();
+                if (bounds.isValid()) {
+                    map.fitBounds(bounds);
+                }
+            } catch (e) {
+                validationDiv.textContent = 'JSON-Fehler: ' + e.message;
+            }
+        }
+
+
+        updateMap();
+    </script>
+</body>
+
+</html>
