@@ -1,27 +1,85 @@
-# Einführung in Rasterdaten
+<!--
+author: Arne Rümmler
+language: de
+mode:     Presentation
+logo:   ./files/slub.png
+link: ./css/rue.css
 
-## Fragen
+@color: <span style="color: @0">@1</span>
+@fontsize: <span style="font-size: @0px">@1</span>
+-->
 
-* Welches Format sollte ich verwenden, um meine Daten darzustellen?
-* Welche Haupttypen von Geodaten gibt es?
-* Was sind die wichtigsten Eigenschaften von Rasterdaten?
 
-## Lernziele
+# Einführungskurs Geodaten
 
-* Den Unterschied zwischen Raster- und Vektordaten beschreiben.
-* Vor- und Nachteile der Speicherung von Daten im Rasterformat beschreiben.
-* Zwischen kontinuierlichen und kategorialen Rasterdaten unterscheiden und Beispiele für Datensätze in beiden Formaten benennen.
+**@fontsize(24,@author)**, *@fontsize(24, SLUB Dresden)*
+
+<div style="margin-top: 100px">
+</div>
+
+![](fig/main2.png)
+
+<div class="bg-slide">
+
+</div>
+
+
+# Was sind Geodaten?
+
+<figure style="float: right; width: 45%; margin-left: 40px; margin-bottom: 10px; text-align: center;">
+  <img src="fig/pin.png" alt="Symbolbild Geodaten" style="width: 100%;">
+  <figcaption style="font-size: 90%; font-style: italic;">Abbildung: flaticon, CC BY-SA 4.0, via Wikimedia Commons
+</figcaption>
+</figure>
+
+**Geodaten sind alle Daten die Information zu ihrer Position auf(/in) der Erde beinhalten.**
+
+- Foto mit Ihrem Handy → Koordinaten in Metadaten gespeichert
+- Regenradar
+- Paketzustellung (geschätzte Ankunftszeit, Karte)
+- Evakuierung bei Bombenfund
+- Aber auch weniger naheliegendes, z.B.: Renaissance: 
+“... the Renaissance was first centered in the Republic of Florence, then spread to the rest of Italy and later throughout Europe.”
+
+
 
 ## Datenstrukturen: Raster und Vektor
 
-Die zwei Haupttypen geografischer Daten sind Raster- und Vektordaten.
 
-Rasterdaten werden als Gitter aus Werten gespeichert, die als Pixel auf einer Karte dargestellt werden. Jeder Pixelwert repräsentiert ein Gebiet auf der Erdoberfläche.
+- Die zwei Haupttypen geografischer Daten sind **Raster**- und **Vektordaten**.
 
-Vektordaten beschreiben spezifische Objekte auf der Erdoberfläche (Punkte, Linien, Polygone) und weisen diesen Attribute zu. Vektordaten werden in einer späteren Lektion behandelt.
+- Rasterdaten werden als Gitter aus Werten gespeichert, die als Pixel auf einer Karte dargestellt werden. Jeder Pixelwert repräsentiert ein Gebiet auf der Erdoberfläche.
 
-## Was sind Rasterdaten?
+- Vektordaten beschreiben spezifische Objekte auf der Erdoberfläche (Punkte, Linien, Polygone) und weisen diesen Attribute zu. 
 
+<div style="display: flex; align-items: flex-start; gap: 10px;">
+
+  <div style="flex: 1;">
+    <figure style="text-align: center;">
+      <img src="fig/osm.png" alt="OpenStreetMap" style="width: 100%; height: 50vh; object-fit: cover;">
+      <figcaption style="font-style: italic;">
+        Abbildung: OpenStreetMap-Vektordaten (Data/Maps Copyright 2018 Geofabrik GmbH and OpenStreetMap Contributors)
+      </figcaption>
+    </figure>
+  </div>
+
+  <div style="flex: 1;">
+    <figure style="text-align: center;">
+      <img src="fig/sentinel.png" alt="Sentinel" style="width: 100%; height: 50vh; object-fit: cover;">
+      <figcaption style="font-style: italic;">
+        Abbildung: Sentinel-2-Rasterdaten (Copernikus Browser, https://browser.dataspace.copernicus.eu)
+      </figcaption>
+    </figure>
+  </div>
+
+</div>
+
+
+
+# Was sind Rasterdaten?
+<div style="display: flex; align-items: start; gap: 40px;">
+
+  <div style="flex: 2;margin-top:30px;">
 Rasterdaten sind gepixelte (gerasterte) Daten, wobei jedem Pixel eine geografische Lage zugeordnet ist. Der Wert eines Pixels kann:
 
 * kontinuierlich sein (z. B. Höhe), oder
@@ -33,107 +91,89 @@ Ein georeferenziertes Raster enthält neben den Bilddaten auch Informationen zu:
 * Zellgröße (Auflösung)
 * Anzahl der Zeilen und Spalten
 * Koordinatenreferenzsystem (CRS)
+</div>
+<div style="flex: 2.5; text-align: right;">
+<figure style="margin: 0;">
+  <img src="fig/dc-spatial-raster/raster_concept.png" alt="Rasterkonzept" style="max-width: 100%; height: auto;">
+  <figcaption style="font-style: italic; font-size: 90%; text-align: right;">
+    Abbildung: Konzept einer Rasterdatenstruktur (National Ecological Observatory Network, NEON) 
+  </figcaption>
+</figure>
+</div>
 
-![Rasterkonzept](fig/dc-spatial-raster/raster_concept.png)
-*Abbildung: Konzept einer Rasterdatenstruktur (Quelle: NEON)*
+</div>
 
+## Beispiele Rasterdaten
+
+<div style="display: flex; align-items: start; gap: 40px;">
+
+<div style="flex: 1;">
 Beispiele für kontinuierliche Rasterdaten:
 
-1. Niederschlagskarten
-2. Baumhöhen aus LiDAR-Daten
-3. Höhenmodelle
+1. Regenradar
+2. Historische Karten
+3. Höhenmodelle (DGM - Digitale Geländemodelle)
 
-![Höhenkarte - NEON Harvard Forest](fig/dc-spatial-raster/DSM_HARV_example.png)
-*Abbildung: Kontinuierliche Höhendaten aus dem NEON AOP LiDAR Sensor*
+![](fig/DGM20_Sachsen.jpg)
+
+*Abbildung: Digitales Geländemodell Südostsachsens (Quelle: GeoSN, dl-de/by-2-0 / https://mathias-groebe.de/opendata-dgm20-sachsen/)*
+</div>
+
+<div style="flex: 1;">
 
 Beispiele für kategoriale Rasterdaten:
 
 1. Landnutzungskarten
-2. Baumhöhen klassifiziert in niedrig, mittel, hoch
+2. Schadenskartierung (leicht, mittel, schwer)
 3. Höhenklassenkarten
 
-![USA Landnutzungsklassifikation](fig/USA_landcover_classification.png)
-*Abbildung: Landnutzungskarte der USA mit kategorialen Rasterdaten (Quelle: Homer et al., 2015)*
+![](fig/corine.png)
 
-## Vorteile und Nachteile von Rasterdaten
+*Abbildung: Corine Landcover Germany in Südostsachsen (Quelle: Deutsches Luft- und Raumfahrtzentrum , DLR)*
+</div>
+</div>
 
-**Vorteile:**
 
-* Repräsentation kontinuierlicher Flächen
-* Hoher Detailgrad möglich
-* Gleichmäßige Datenstruktur für einfache Berechnungen
-
-**Nachteile:**
-
-* Große Dateigrößen bei hoher Auflösung
-* Schlechte Metadatenintegration in manchen Formaten
-* Eingeschränkte Möglichkeiten zur Darstellung komplexer Beziehungen
 
 ## Wichtige Eigenschaften von Rasterdaten
+<div style="display: flex; align-items: start; gap: 40px;">
 
-### Ausdehnung (Extent)
+<div style="flex: 2;">
+**Ausdehnung (Extent)**
 
 Die Ausdehnung gibt das geografische Gebiet an, das durch das Raster abgedeckt wird (Nord-, Süd-, Ost- und Westgrenze).
 
 ![Ausdehnung](fig/dc-spatial-raster/spatial_extent.png)
-*Abbildung: Darstellung der räumlichen Ausdehnung eines Rasters (Quelle: NEON)*
 
-### Auflösung (Resolution)
+*Abbildung: Darstellung der räumlichen Ausdehnung eines Rasters (Quelle: National Ecological Observatory Network, NEON)*
+</div>
+<div style="flex: 3;">
+**Auflösung (Resolution)**
 
 Die Auflösung beschreibt die Fläche am Boden, die ein einzelner Pixel abdeckt. Höhere Auflösung = kleinere Zellen = mehr Details.
 
 ![Auflösung](fig/dc-spatial-raster/raster_resolution.png)
-*Abbildung: Auswirkungen unterschiedlicher Auflösung auf Rasterdarstellung (Quelle: NEON)*
 
-## Rasterdatenformate in diesem Workshop
+*Abbildung: Auswirkungen unterschiedlicher Auflösung auf Rasterdarstellung (Quelle: National Ecological Observatory Network, NEON)*
+</div>
+</div>
 
-Wir verwenden das **GeoTIFF-Format** (`.tif`). Es enthält:
 
-1. Ausdehnung
-2. Auflösung
-3. Koordinatenreferenzsystem (CRS)
-4. NoData-Werte
 
-Mehr dazu in späteren Lektionen.
+## Rasterdatenformate
 
-## Mehrband-Rasterdaten
+Rasterdatenformate für Geodaten sind i.d.R. die selben Formate, die auch für digitale Bilder verwendted werden (JPEG, TIF, JPEG2000), aber ergänzt um den räumlichen Bezug. 
 
-Ein Raster kann mehrere **Bänder** enthalten. Ein typisches Beispiel ist ein Farbbild mit drei Bändern (Rot, Grün, Blau).
+- Der Quasi-Standard für Rasterdaten ist das **GeoTIFF-Format** `.tif`. 
+- Seltener, aber insbesondere bei Verwaltungsdaten ist das **XYZ-Format** `xyz`/`txt` anzutreffen. 
+- Auch weniger häufig ist GMLJKP2 `gmljp2` (Geographic Markup Language + JPEG2000). 
 
-![RGB Rasterbild](fig/dc-spatial-raster/RGBSTack_1.jpg)
-*Abbildung: Drei-Band-RGB-Komposit eines Farbbildes (Quelle: NEON)*
 
-Alle Bänder eines Mehrband-Rasters haben dieselbe:
 
-* Ausdehnung
-* Auflösung
-* CRS
+# Was sind Vektordaten?
 
-Weitere Typen von Mehrbanddaten:
-
-1. **Zeitreihen-Raster** (z. B. Temperatur über Zeit)
-2. **Multispektral- oder Hyperspektralbilder** (mehr als 4 bzw. mehr als 10 Bänder)
-
-## Schlüsselpunkte
-
-* Rasterdaten bestehen aus Pixeln, die mit geografischen Koordinaten verknüpft sind.
-* Rasterdaten besitzen immer eine Ausdehnung und eine Auflösung.
-* Die Ausdehnung gibt das geografische Gebiet an, das vom Raster abgedeckt wird.
-* Die Auflösung beschreibt, wie groß jeder Pixel auf dem Boden ist.
-
-# Einführung in Vektordaten
-
-## Fragen
-
-* Was sind die wichtigsten Eigenschaften von Vektordaten?
-* Was ist der Unterschied zwischen Vektor- und Rasterdaten?
-
-## Lernziele
-
-* Vor- und Nachteile der Speicherung von Daten im Vektorformat beschreiben.
-* Die drei Vektortypen benennen und passende Datenarten zuordnen können.
-
-## Was sind Vektordaten?
+<div style="display: flex; align-items: start; gap: 40px;">
+<div style="flex: 8;margin-top:30px;">
 
 Vektordaten stellen konkrete Objekte auf der Erdoberfläche dar und verknüpfen diese mit Attributen. Die Geometrie wird durch sogenannte Scheitelpunkte (x-, y-Koordinaten) definiert. Die Anordnung dieser Punkte bestimmt den Geometrietyp:
 
@@ -141,60 +181,124 @@ Vektordaten stellen konkrete Objekte auf der Erdoberfläche dar und verknüpfen 
 * **Linien:** Verbundene Punkte (z. B. Straßen, Flüsse), wobei jeder Knick einen Scheitelpunkt darstellt.
 * **Polygone:** Geschlossene Linien mit mindestens drei Punkten (z. B. Seen, Flächen, Ländergrenzen).
 
+Ein Vektorgeodatenobjekt, also der Zusammenschluss von Geometrie und Attributen, wird als **Feature** bezeichnet. 
+
+</div>
+<div style="flex: 6;">
+
 ![Vektortypen](fig/dc-spatial-vector/pnt_line_poly.png)
-*Abbildung: Punkte, Linien und Polygone (Quelle: NEON)*
 
-## Datentipp
+*Abbildung: Punkte, Linien und Polygone (Quelle: National Ecological Observatory Network, NEON)*
+</div>
+</div>
 
-Grenzverläufe (z. B. von Ländern oder Bundesländern) können auch als Linien gespeichert sein. Diese besitzen dann jedoch keine Fläche – im Gegensatz zu Polygonen.
 
-## Vorteile und Nachteile von Vektordaten
 
-**Vorteile:**
+## Besonderheiten Vektordaten
 
-* Geometrien transportieren zusätzliche Bedeutung (z. B. durch Wahl von Punkt vs. Polygon)
-* Mehrere Attribute pro Objekt möglich (z. B. Stadtname, Bevölkerung)
-* Speicherplatz oft effizienter als bei Rasterdaten
+<div style="display: flex; align-items: start; gap: 20px;">
+<div style="flex: 1;">
 
-**Nachteile:**
+* Mehrere Attribute pro Objekt möglich (z. B. Einrichtung, Träger, Bemerkung, Größe, Adresse, ...)
+* Geometrientypen (Punkt, Linie, Polygon) transportieren zusätzliche Bedeutung 
+  
+  * Modelliere ich eine Wanderung als Linie oder als Abfolge von Punkten (jeder Punkt kann dann eigene Attribute haben!) dar?
+* Komplexes Datenmodell mit vielen Datenformaten
+  
+  * konsistente Datenhaltung schwierig
+  * kaum Standards, einige Best Practices
+  * viele Speziallösungen
+</div>
+<div style="flex: 2;">
 
-* Möglicher Detailverlust gegenüber Rasterdaten
-* Datenlücken je nach Erhebungsmethodik
-* Komplexere Berechnungen, da Geometrie und Attribute berücksichtigt werden müssen
+<iframe width="100%" height="600px" src="./files/map.html"></iframe>
+**Beispiel: [legale Graffitiflächen in Dresden](https://opendata.dresden.de/informationsportal/?open=1&result=3B7136B1ADF14E59A2E74D3FACE95C2C#app/mainpage)** (Quelle: https://opendata.dresden.de/)
+</div>
+</div>
 
-Vektordaten sind nicht nur in der Geoinformatik verbreitet: Auch CAD-Programme und Computergrafik arbeiten vektorbasiert – allerdings ohne Raumbezug.
 
-## Datenformat in diesem Workshop
+## Vektordatenformate
 
-Wir verwenden das **Shapefile-Format** (`.shp`). Es speichert:
+<div style="display: flex; align-items: start; gap: 20px;">
+<div style="flex: 1;">
+**Shapefile `.shp`**
 
-* **Ausdehnung** – das abgedeckte geografische Gebiet
-* **Geometrietyp** – Punkte, Linien oder Polygone (nicht gemischt)
-* **Koordinatenreferenzsystem (CRS)**
-* **Attribute** – z. B. Namen, Höhenangaben, Kategorien
+- Klassisches ESRI-Format (proprietär)
+- Besteht aus: `.shp` (Geometrie), `.shx` (Index), `.dbf` (Attribute)
+- Weit verbreitet, aber veraltet
+- Zeichenbeschränkung für Attribute
+</div>
+<div style="flex: 1;">
+**GeoJSON `geojson`/`json`**
 
-Ein Shapefile kann immer nur einen Geometrietyp enthalten.
+- JSON-basiert
+- Ideal für Webkarten (z. B. Leaflet, Mapbox)
+- Unterstützt Punkte, Linien, Polygone und Sammlungen
+- nicht standardisiert
+</div>
+<div style="flex: 1;">
+**GeoPackage `gpkg`**
 
-## Herausforderung: Vektortyp erkennen
+- SQLite-basiert (eine Mini-Datenbank)
+- Raster- & Vektordaten gemeinsam speicherbar
+- Offener Standard (OGC)
+- Gut für GIS Anwendungen geeignet (z.B. Datenanalyse oder Kartenerstellung)
+</div>
+<div style="flex: 1;">
+**KML `.kml`/`.kmz`**
 
-![Objekte und Ausdehnung](fig/dc-spatial-vector/spatial_extent.png)
-*Abbildung: Punkt-, Linien- und Polygonobjekte mit Ausdehnungsrahmen*
+- Für Google Earth, Earth Engine
+- XML-basiert
+- unterstützt Styles -> Vermischung von Daten und Datenvisualisierung
+- Gut in Google Ökosystem; nicht so gut außerhalb
+</div>
+</div>
 
-Welche Objekte besitzen dieselbe Ausdehnung? Welche nicht?
+<div style="margin-top:20px;">
+</div>
 
-### Lösung
+<!--
+data-marker="
+1 0 1 135 rgba(255,0,0,0.6); 
+"
+-->
+```ascii
++-----------+------------------+------------------+---------+------------------+---------------------------------------+
+| Format    | Offener Standard | Web-Tauglichkeit | Kompakt | GIS-Tauglichkeit | Lesbar & verständlich für Menschen    |
++-----------+------------------+------------------+---------+------------------+---------------------------------------+
+| Shapefile |       ✘          |        ✘         |    ✘    |        ✔         | ✘ Binärformat                         |
+| GeoJSON   |       ∼          |        ✔         |    ✔    |        ∼         | ✔ Klarer Text, simple Struktur        |
+| GPKG      |       ✔          |        ✘         |    ✔    |        ✔         | ✘ Binärformat                         |
+| KML/KMZ   |       ✔          |        ✔         |    ✔    |        ∼         | ∼ XML-basiert, oft tief verschachtelt |
++...........+..................+..................+.........+..................+.......................................+
+| Tabellen  |       ✘          |        ✘         |    ✔    |        ✘         | ✔ Sehr gut                            |
++-----------+------------------+------------------+---------+------------------+---------------------------------------+
+```
 
-Linien und Polygone haben dieselbe Ausdehnung. Die Punktobjekte hingegen erstrecken sich nicht so weit in vertikaler Richtung – ihr Umfang ist kleiner.
 
-## Weiterführende Ressourcen
 
-Mehr zu Shapefiles auf [Wikipedia](https://de.wikipedia.org/wiki/Shapefile).
+**Tabellen `csv`/`xlxs`/...**
 
-## Warum nicht beides?
+- kein eigentliches Geodatenformat, wird aber häufig verwendet
+- nur für Punktdaten mit flachen Attributen geeignet
+- sehr einfach zu verwenden
 
-Die meisten Dateiformate sind entweder für Raster- oder für Vektordaten gedacht – nicht für beides gleichzeitig. Innerhalb von Vektordaten dürfen oft nur Objekte eines Typs gespeichert werden. Bei Rasterdaten ist eine Kombination unterschiedlicher Datentypen (z. B. Integer + Float) meist nicht erlaubt. Das erleichtert Standardisierung und Verarbeitung.
 
-## Schlüsselpunkte
+# Zusammenfassung
 
-* Vektordaten repräsentieren Objekte mit eindeutiger Geometrie und Attributen.
+**Rasterdaten**
+
+* Rasterdaten bestehen aus Pixeln, die mit geografischen Koordinaten verknüpft sind.
+* Rasterdaten besitzen immer eine Ausdehnung und eine Auflösung.
+* Die Ausdehnung gibt das geografische Gebiet an, das vom Raster abgedeckt wird.
+* Die Auflösung beschreibt, wie groß jeder Pixel auf dem Boden ist.
+* Das Quasi-Standardformat für Rasterdaten ist **GeoTIFF**.
+
+**Vektordaten**
+
+* Vektordaten repräsentieren einzelne Objekte mit eindeutiger Geometrie und Attributen.
+* Ein Vektordatenobjekt wird als Feature bezeichnet.
 * Es gibt drei Geometrietypen: Punkt, Linie und Polygon.
+* Für Geodaten-AnfängerInnen empfiehlt sich die Arbeit mit Tabellen oder **GeoJSON**.
+* GIS-Software arbeitet typischerweise mit flachen Attributen (keine Verschachtelung)
+
